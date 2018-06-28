@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/fsnotify/fsnotify"
@@ -47,13 +48,16 @@ func extentionSocketIsAvailable(socketPath *string) bool {
 
 func main() {
 
+	cwd, _ := os.Executable()
+	cwd = filepath.Dir(cwd)
+
 	// osquery passes these flags to the extention
 	var (
 		socketPath = flag.String("socket", "", "path to osqueryd extensions socket")
 		timeout    = flag.Int("timeout", 0, "")
 		_          = flag.Int("interval", 0, "")
 		verbose    = flag.Bool("verbose", false, "")
-		configFile = flag.String("config", "/var/osquery/extentions/", "path to the golert configuration file")
+		configFile = flag.String("config", cwd, "path to the golert configuration file")
 	)
 	flag.Parse()
 
