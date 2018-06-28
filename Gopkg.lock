@@ -16,13 +16,13 @@
   branch = "master"
   name = "github.com/gen2brain/beeep"
   packages = ["."]
-  revision = "982e34175ed3b8dc0d100fb0f0b06d8e2639ec4e"
+  revision = "b98497f37c8014f7d68280c2969a47a7af3cf28d"
 
 [[projects]]
   branch = "master"
   name = "github.com/gen2brain/dlgs"
   packages = ["."]
-  revision = "b5c413914de2b49de3b2a3e7f532d4cc76a6f687"
+  revision = "01a5f5a61d1883f3329fac666200c6f573f5196e"
 
 [[projects]]
   name = "github.com/godbus/dbus"
@@ -34,13 +34,13 @@
   branch = "master"
   name = "github.com/gopherjs/gopherjs"
   packages = ["js"]
-  revision = "df18d38287ab2ed3138d564e7c8cbe4d5a249d87"
+  revision = "8dffc02ea1cb8398bb73f30424697c60fcf8d4c5"
 
 [[projects]]
   branch = "master"
   name = "github.com/kolide/osquery-go"
   packages = [".","gen/osquery","plugin/logger","transport"]
-  revision = "834175eae0d8cf864bba0b82ab4e9694cf5cfd1b"
+  revision = "c674f1b7ed350636425937687ad01d06d6f8332a"
 
 [[projects]]
   branch = "master"
@@ -57,8 +57,8 @@
 [[projects]]
   name = "github.com/tidwall/gjson"
   packages = ["."]
-  revision = "01f00f129617a6fe98941fb920d6c760241b54d2"
-  version = "v1.1.0"
+  revision = "afaeb9562041a8018c74e006551143666aed08bf"
+  version = "v1.1.1"
 
 [[projects]]
   branch = "master"
@@ -70,7 +70,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["windows","windows/registry"]
-  revision = "dd2ff4accc098aceecb86b36eaa7829b2a17b1c9"
+  revision = "8014b7b116a67fea23fbb82cd834c9ad656ea44b"
 
 [[projects]]
   branch = "v1"

@@ -1,0 +1,58 @@
+notifiers:
+
+  pack_hids-hardware_usb_devices:
+    # Statuses: true, false
+    enabled: true
+    # types: popup, notification
+    type: popup
+    name: USB Device Connected
+    template: "Vendor: {{ .vendor }}\nModel: {{ .model }}\nSerial: {{ .serial }}\n"
+    # Fields are required so that golert knows which to resolve based off events.
+    # The field names need to match the names used in the message template as well as
+    # be the column names from the originating query.
+    fields:
+      - vendor
+      - model
+      - serial
+
+  pack_hids-network_arp_spoofing:
+    enabled: true
+    type: popup
+    name: Gateway IP / MAC Change
+    template: "Gateway: {{ .gateway }}\nMAC Address: {{ .mac }}\n"
+    fields:
+      - gateway
+      - mac
+
+  pack_hids-malware_process_with_rmd_bin:
+    enabled: true
+    type: popup
+    name: Running Process Missing Binary on Disk
+    template: "PID: {{ .pid }}\nCommand line: {{ .cmdline }}\nCWD: {{ .cwd }}\nUID: {{ .uid }}\nGID: {{ .gid }}\n"
+    fields:
+      - pid
+      - cmdline
+      - cwd
+      - uid
+      - gid
+
+  pack_hids-network_macos_listening_ports:
+    enabled: true
+    type: popup
+    name: Process with Listening Port on All Interfaces
+    template: "PID: {{ .pid }}\nName: {{ .name }}\nPath: {{ .path }}\nPort: {{ .port }}\nProtocol: {{ .protocol }}\n"
+    fields:
+      - pid
+      - name
+      - path
+      - port
+      - protocol
+
+  pack_hids-network_dns_lookup_for_invalid_name:
+    enabled: true
+    type: popup
+    name: DNS Lookup Successfull for Invalid Domain
+    template: "Response Code: {{ .response_code }}\nBytes: {{ .bytes }}\n"
+    fields:
+      - response_code
+      - bytes
