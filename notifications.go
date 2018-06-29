@@ -6,7 +6,7 @@ import (
 	"html/template"
 	"strings"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 
 	"github.com/gen2brain/beeep"
@@ -88,7 +88,7 @@ func processLogEntry(osQuerylogEntry string) {
 	_, exists := notifiers[logEntryName]
 	if !exists {
 
-		log.WithFields(log.Fields{"notifier": logEntryName}).Warn("Notifier configuration does not exist!")
+		log.WithFields(logrus.Fields{"notifier": logEntryName}).Warn("Notifier configuration does not exist!")
 		return
 	}
 
@@ -96,7 +96,7 @@ func processLogEntry(osQuerylogEntry string) {
 	viper.UnmarshalKey("notifiers."+logEntryName, &c)
 
 	if !c.Enabled {
-		log.WithFields(log.Fields{"name": c.Name}).Warn("Not processing alert as notifier is disabled")
+		log.WithFields(logrus.Fields{"name": c.Name}).Warn("Not processing alert as notifier is disabled")
 		return
 	}
 
@@ -120,13 +120,13 @@ func showAlert(message *AlertMessage) {
 
 	switch message.Type {
 	case alertTypeNotification:
-		// `tell application "System Events" to display notification "`+message+`" with title "`+title+`" sound name "default"`
+		log.WithFields(logrus.Fields{"type": message.Type}).Info("Sending notification")
 		if err := beeep.Alert(message.Name, message.Message, ""); err != nil {
 			log.Printf("error sending notification: %s\n", err.Error())
 		}
 
 	case alertTypePopup:
-		// `tell application "System Events" to display dialog "`+text+`" with title "`+title+`" buttons {"OK"} default button "OK" with icon `+icon+``
+		log.WithFields(logrus.Fields{"type": message.Type}).Info("Sending popup")
 		_, err := dlgs.Warning("Alert!", fmt.Sprintf("%s\n\nAction: %s\nTime: %s\n\n%s",
 			message.Name, strings.Title(message.Action), message.Time, message.Message))
 		if err != nil {
@@ -137,8 +137,8 @@ func showAlert(message *AlertMessage) {
 		// Attempt to alert that we couldn't handle the type.
 		m := fmt.Sprintf("received message with unknown alert type.message was: %s\n", message.Type)
 		if err := beeep.Alert(message.Name, m, ""); err != nil {
-			log.Printf("error sending notification: %s\n", err.Error())
+			log.Error("error sending notification: %s\n", err.Error())
 		}
-		log.Printf(m)
+		log.Error(m)
 	}
 }

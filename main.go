@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/fsnotify/fsnotify"
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 
 	"github.com/kolide/osquery-go"
 	"github.com/kolide/osquery-go/plugin/logger"
@@ -22,6 +22,8 @@ import (
 type LoggerConfiguration struct {
 	verbose bool
 }
+
+var log = logrus.New()
 
 // a global logger configuration instance
 var loggerConfiguration = &LoggerConfiguration{}
@@ -74,8 +76,21 @@ func main() {
 	// Add live configuration watching for notifier changes
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		log.WithFields(log.Fields{"name": e.Name}).Info("Config file changed and reloaded")
+		log.WithFields(logrus.Fields{"name": e.Name}).Info("Config file changed and reloaded")
 	})
+
+	// Check if a file path is specified for golert to log
+	logfilePath := viper.GetString("logfile")
+
+	if logfilePath != "" {
+		file, err := os.OpenFile(logfilePath, os.O_CREATE|os.O_WRONLY, 0666)
+		if err == nil {
+			log.Out = file
+		} else {
+			log.Error("Failed to log to file, using default stderr")
+			log.Out = os.Stdout
+		}
+	}
 
 	// make sure the extentions socket is available
 	if !extentionSocketIsAvailable(socketPath) {
@@ -93,6 +108,7 @@ func main() {
 	newLogger := logger.NewPlugin("golert-logger", LogString)
 	server.RegisterPlugin(newLogger)
 
+	log.Info("Starting golert")
 	if err := server.Run(); err != nil {
 		log.Fatal(err)
 	}
@@ -109,12 +125,12 @@ func LogString(ctx context.Context, typ logger.LogType, logText string) error {
 
 	} else {
 
-		log.WithFields(log.Fields{"log-type": typ}).Warn("Got an unprocessable logtype")
+		log.WithFields(logrus.Fields{"log-type": typ}).Warn("Got an unprocessable logtype")
 	}
 
 	if loggerConfiguration.verbose {
 
-		log.WithFields(log.Fields{"log-type": typ, "log-text": logText}).Info("Logentry")
+		log.WithFields(logrus.Fields{"log-type": typ, "log-text": logText}).Info("Logentry")
 	}
 
 	return nil
