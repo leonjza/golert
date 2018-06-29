@@ -30,7 +30,7 @@ notifiers:
     enabled: true
     type: notification
     name: ARP Neighbour Change
-    template: "Address: {{ .gateway }}\nMAC Address: {{ .mac }}\nInterface: {{ .interface }}\n"
+    template: "Address: {{ .address }}\nMAC Address: {{ .mac }}\nInterface: {{ .interface }}\n"
     fields:
       - address
       - mac

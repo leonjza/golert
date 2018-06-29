@@ -9,8 +9,8 @@
 [[projects]]
   name = "github.com/Microsoft/go-winio"
   packages = ["."]
-  revision = "7da180ee92d8bd8bb8c37fc560e673e6557c392f"
-  version = "v0.4.7"
+  revision = "67921128fb397dd80339870d2193d6b1e6856fd4"
+  version = "v0.4.8"
 
 [[projects]]
   name = "github.com/fsnotify/fsnotify"
@@ -22,13 +22,13 @@
   branch = "master"
   name = "github.com/gen2brain/beeep"
   packages = ["."]
-  revision = "b98497f37c8014f7d68280c2969a47a7af3cf28d"
+  revision = "86120b2972b3161e6ec17338e634d0dcbdb15dcc"
 
 [[projects]]
   branch = "master"
   name = "github.com/gen2brain/dlgs"
   packages = ["."]
-  revision = "01a5f5a61d1883f3329fac666200c6f573f5196e"
+  revision = "342edb4c68c1aca5fab1bd443cf79ef5358f7dc5"
 
 [[projects]]
   name = "github.com/godbus/dbus"
@@ -40,7 +40,7 @@
   branch = "master"
   name = "github.com/gopherjs/gopherjs"
   packages = ["js"]
-  revision = "8dffc02ea1cb8398bb73f30424697c60fcf8d4c5"
+  revision = "0892b62f0d9fb5857760c3cfca837207185117ee"
 
 [[projects]]
   branch = "master"
