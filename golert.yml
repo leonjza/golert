@@ -1,4 +1,4 @@
-logfile: /var/osquery/log/golert.log
+logfile: /var/log/osquery/golert.log
 notifiers:
 
   pack_hids-hardware_usb_devices:
@@ -24,6 +24,17 @@ notifiers:
     fields:
       - gateway
       - mac
+
+  pack_hids-network_arp_neighbours:
+    # select address, mac, interface from arp_cache where permanent != 1;
+    enabled: true
+    type: notification
+    name: ARP Neighbour Change
+    template: "Address: {{ .gateway }}\nMAC Address: {{ .mac }}\nInterface: {{ .interface }}\n"
+    fields:
+      - address
+      - mac
+      - interface
 
   pack_hids-malware_process_with_rmd_bin:
     enabled: true
