@@ -19,4 +19,6 @@
 # [[override]]
 #  name = "github.com/x/y"
 #  version = "2.4.0"
-
+[[constraint]]
+    name = "github.com/kolide/osquery-go"
+    revision = "d4f3a629e76ccc0d62dccc16a9b8d52e7b2fb10b"

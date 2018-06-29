@@ -4,8 +4,7 @@
 [[projects]]
   name = "git.apache.org/thrift.git"
   packages = ["lib/go/thrift"]
-  revision = "327ebb6c2b6df8bf075da02ef45a2a034e9b79ba"
-  version = "0.11.0"
+  revision = "0dd823580c78a79ae9696eb9b3650e400fff140f"
 
 [[projects]]
   name = "github.com/Microsoft/go-winio"
@@ -50,10 +49,9 @@
   revision = "ef8a98b0bbce4a65b5aa4c368430a80ddc533168"
 
 [[projects]]
-  branch = "master"
   name = "github.com/kolide/osquery-go"
   packages = [".","gen/osquery","plugin/logger","transport"]
-  revision = "eb3599eb1d47b59aa5082251facfa92def5a8b1b"
+  revision = "d4f3a629e76ccc0d62dccc16a9b8d52e7b2fb10b"
 
 [[projects]]
   name = "github.com/magiconair/properties"
@@ -141,12 +139,6 @@
 
 [[projects]]
   branch = "master"
-  name = "golang.org/x/net"
-  packages = ["context"]
-  revision = "e514e69ffb8bc3c76a71ae40de0118d794855992"
-
-[[projects]]
-  branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix","windows","windows/registry"]
   revision = "7138fd3d9dc8335c567ca206f4333fb75eb05d56"
@@ -172,6 +164,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "2f3aefb8ddd96ed4bf349dca81d2ca2a2bd7df39e143b46cbb4d87749b18d095"
+  inputs-digest = "5b7f0a5653769de36c2f696ac8762f7dbabb7a371271183b04f71c09a493a71b"
   solver-name = "gps-cdcl"
   solver-version = 1
