@@ -68,3 +68,13 @@ notifiers:
     fields:
       - response_code
       - bytes
+
+  pack_hids-configuration_alf_exceptions:
+    # select path, state from alf_exceptions;
+    enabled: true
+    type: popup
+    name: Application Layer Firewall Exception Change
+    template: "Path: {{ .path }}\nState: {{ .state }}\n"
+    fields:
+      - path
+      - state
