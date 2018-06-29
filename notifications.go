@@ -120,13 +120,15 @@ func showAlert(message *AlertMessage) {
 
 	switch message.Type {
 	case alertTypeNotification:
-		log.WithFields(logrus.Fields{"type": message.Type}).Info("Sending notification")
+		log.WithFields(logrus.Fields{"type": message.Type, "name": message.Name, "message": message.Message}).Info("Sending notification")
+		// `tell application "System Events" to display notification "`+message+`" with title "`+title+`" sound name "default"`
 		if err := beeep.Alert(message.Name, message.Message, ""); err != nil {
 			log.Printf("error sending notification: %s\n", err.Error())
 		}
 
 	case alertTypePopup:
-		log.WithFields(logrus.Fields{"type": message.Type}).Info("Sending popup")
+		log.WithFields(logrus.Fields{"type": message.Type, "name": message.Name, "message": message.Message}).Info("Sending popup")
+		// `tell application "System Events" to display dialog "`+text+`" with title "`+title+`" buttons {"OK"} default button "OK" with icon `+icon+``
 		_, err := dlgs.Warning("Alert!", fmt.Sprintf("%s\n\nAction: %s\nTime: %s\n\n%s",
 			message.Name, strings.Title(message.Action), message.Time, message.Message))
 		if err != nil {
